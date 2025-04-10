@@ -46,14 +46,24 @@
   </div>
   <div id="status"></div>
 
-  <script>
-    function pause() {
-      document.getElementById("status").innerHTML = "🟥 Dataform schedule halted.<br>🎉 It's been an honor.";
+<script>
+  function pause() {
+    const status = document.getElementById("status");
+    status.innerHTML = "⏳ Sending pause command to Dataform...";
+    
+    setTimeout(() => {
+      status.innerHTML = "🟥 Dataform schedule paused.<br>🎉 It's been an honor.";
+      
+      // Add optional celebratory confetti
       const confetti = document.createElement("div");
       confetti.innerHTML = "🎊🎊🎊";
+      confetti.style.fontSize = "48px";
+      confetti.style.marginTop = "20px";
       document.body.appendChild(confetti);
-    }
-  </script>
+    }, 3000); // 3 second delay
+  }
+</script>
+
 
 </body>
 </html>
