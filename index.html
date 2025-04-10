@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Big Red Button</title>
+  <style>
+    body {
+      background-color: #1a1a1a;
+      color: white;
+      font-family: sans-serif;
+      text-align: center;
+      padding-top: 100px;
+    }
+    .button-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .big-button {
+      background-color: red;
+      border: none;
+      border-radius: 100px;
+      padding: 80px 100px;
+      font-size: 32px;
+      font-weight: bold;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 0 40px rgba(255,0,0,0.6);
+      transition: all 0.2s ease-in-out;
+    }
+    .big-button:active {
+      transform: scale(0.95);
+      box-shadow: 0 0 10px rgba(255,0,0,0.8);
+    }
+    #status {
+      margin-top: 50px;
+      font-size: 24px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>👨‍🚀 Initiate Shutdown</h1>
+  <div class="button-container">
+    <button class="big-button" onclick="pause()">STOP DATAFORM</button>
+  </div>
+  <div id="status"></div>
+
+  <script>
+    function pause() {
+      document.getElementById("status").innerHTML = "🟥 Dataform schedule halted.<br>🎉 It's been an honor.";
+      const confetti = document.createElement("div");
+      confetti.innerHTML = "🎊🎊🎊";
+      document.body.appendChild(confetti);
+    }
+  </script>
+
+</body>
+</html>
