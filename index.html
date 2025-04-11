@@ -31,7 +31,6 @@
     .big-button:active {
       transform: scale(0.95);
       box-shadow: 0 0 40px rgba(225, 6, 0, 0.6);
-
     }
     #status {
       margin-top: 50px;
@@ -47,24 +46,43 @@
   </div>
   <div id="status"></div>
 
-<script>
-  function pause() {
-    const status = document.getElementById("status");
-    status.innerHTML = "⏳ Sending pause command to Dataform...";
-    
-    setTimeout(() => {
-      status.innerHTML = "🟥 Dataform schedule halted.<br>🎉 It's been an honor.";
-      
-      // Add optional celebratory confetti
-      const confetti = document.createElement("div");
-      confetti.innerHTML = "🎊🎊🎊";
-      confetti.style.fontSize = "48px";
-      confetti.style.marginTop = "20px";
-      document.body.appendChild(confetti);
-    }, 3000); // 3 second delay
-  }
-</script>
+  <script>
+    function pause() {
+      const button = document.querySelector(".big-button");
+      const status = document.getElementById("status");
 
+      button.disabled = true;
+      button.innerText = "Processing...";
+
+      // Status messages
+      const messages = [
+        "⏳ Sending pause command to Dataform...",
+        "🛑 Stopping production-monthly schedule...",
+        "🛑 Stopping production-weekly schedule...",
+        "🛑 Stopping production-daily schedule...",
+        "🛑 Stopping production-hourly schedule...",
+        "🔥 Terminating sgu and hubspot Dataform tasks...",
+        "📦 Archiving miamed_bi_test_view artifacts...",
+        "🟥 Dataform schedule halted.<br>🎉 It’s been an honor."
+      ];
+
+      messages.forEach((msg, index) => {
+        setTimeout(() => {
+          status.innerHTML = msg;
+
+          // Add confetti only at the end
+          if (index === messages.length - 1) {
+            const confetti = document.createElement("div");
+            confetti.innerHTML = "🎊🎊🎊";
+            confetti.style.fontSize = "48px";
+            confetti.style.marginTop = "20px";
+            document.body.appendChild(confetti);
+            button.innerText = "Shutdown Complete";
+          }
+        }, index * 2000); // Delay each message by 2s
+      });
+    }
+  </script>
 
 </body>
 </html>
